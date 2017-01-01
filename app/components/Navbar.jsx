@@ -23,7 +23,7 @@ var Navbar = React.createClass({
             <div className='top-bar-right'>
               <lu className='menu'>
                 <li className='menu-text'>
-                  Created by <a href="">EvGeniy</a> 
+                  Created by <a href="">EvGeniy</a>
                 </li>
               </lu>
             </div>
