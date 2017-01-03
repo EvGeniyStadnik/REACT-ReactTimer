@@ -8,7 +8,7 @@ module.exports = {
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
-            "jsx": true
+            "jsx": false
         },
         "sourceType": "module"
     },
