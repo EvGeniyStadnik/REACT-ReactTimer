@@ -1,6 +1,9 @@
 var React = require('react');
 
 var CountdownForm = React.createClass({
+  myTestFunction: function(){
+    
+  },
   onSubmit: function(e){
     e.preventDefault();
     var strSeconds = this.refs.seconds.value;

@@ -1,4 +1,15 @@
 var React = require('react');
+//----------
+// var ReactDOM =require('react-dom');
+// var TestUtils = require('react-addons-test-utils');
+// var CountdownForm = require('CountdownForm');
+//countdownForm - объект
+// var countdownForm = TestUtils.renderIntoDocument(<CountdownForm/>);
+// console.log(countdownForm);
+//el DOM елемент
+// var el = ReactDOM.findDOMNode(countdownForm);
+// console.log(el);
+//-----------
 
 var Clock = React.createClass({
   getDefaultProps: function () {
@@ -26,7 +37,5 @@ var Clock = React.createClass({
     );
   }
 });
-//console.log(Clock.formatSeconds());
-//var el = ReactDOM.findDOMNode(clock);
-//console.log(el);
+
 module.exports = Clock;
