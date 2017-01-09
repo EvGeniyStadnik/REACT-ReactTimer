@@ -2,13 +2,13 @@ var React = require('react');
 
 var CountdownForm = React.createClass({
   myTestFunction: function(){
-    
+
   },
   onSubmit: function(e){
     e.preventDefault();
     var strSeconds = this.refs.seconds.value;
 
-    if(strSeconds.match(/^[0-9]*$/)){
+    if(strSeconds.match(/^[0-9]*$/) && strSeconds){
       this.refs.seconds.value = '';
       this.props.onSetCountdown(parseInt(strSeconds, 10));
     }
