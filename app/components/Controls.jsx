@@ -1,34 +1,39 @@
 var React = require('react');
 
-var Controls = React.createClass({
-  propTypes: {
-    countdownStatus: React.PropTypes.string.isRequired,
-    onStatusChange: React.PropTypes.func.isRequired
-  },
-  onStatusChange: function(newStatus){
-    return () => {
-      this.props.onStatusChange(newStatus);
+class Controls extends React.Component {
+
+    constructor (props){
+      super(props)
     }
-  },
-  // componentWillReceiveProps: function(newProps){
-  //   console.log('componentWillReceiveProps', newProps.countdownStatus);
-  // },
-  render: function(){
-    var {countdownStatus} = this.props;
-    var renderStartStopButton = () => {
-      if(countdownStatus === 'started'){
-        return <button className='button secondary' onClick={this.onStatusChange('paused')}>Pause</button>
-      } else  { //paused , stopped
-        return <button className='button primary' onClick={this.onStatusChange('started')}>Start</button>
+
+    onStatusChange(newStatus){
+      return () => {
+          this.props.onStatusChange(newStatus);
       }
-    };
-    return(
-      <div className='controls'>
-        {renderStartStopButton()}
-        <button className='button alert hollow' onClick={this.onStatusChange('stopped')}>Clear</button>
-      </div>
-    );
-  }
-});
+    }
+
+    render (){
+        const {countdownStatus} = this.props;
+        const renderStartStopButton = () => {
+            if(countdownStatus === 'started'){
+                return <button className='button secondary' onClick={this.onStatusChange('paused')}>Pause</button>
+            } else  { //paused , stopped
+                return <button className='button primary' onClick={this.onStatusChange('started')}>Start</button>
+            }
+        };
+        return(
+            <div className='controls'>
+                {renderStartStopButton()}
+              <button className='button alert hollow' onClick={this.onStatusChange('stopped')}>Clear</button>
+            </div>
+        );
+    }
+
+}
+
+Controls.propTypes = {
+  countdownStatus: React.PropTypes.string.isRequired,
+  onStatusChange: React.PropTypes.func.isRequired
+};
 
 module.exports = Controls;

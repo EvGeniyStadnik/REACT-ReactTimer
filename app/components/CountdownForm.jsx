@@ -1,28 +1,33 @@
-var React = require('react');
+const React = require('react');
 
-var CountdownForm = React.createClass({
-  myTestFunction: function(){
-
-  },
-  onSubmit: function(e){
-    e.preventDefault();
-    var strSeconds = this.refs.seconds.value;
-
-    if(strSeconds.match(/^[0-9]*$/) && strSeconds){
-      this.refs.seconds.value = '';
-      this.props.onSetCountdown(parseInt(strSeconds, 10));
+class CountdownForm extends React.Component{
+    constructor (props){
+        super(props);
+        this.onSubmit = this.onSubmit.bind(this);
     }
-  },
-  render: function(){
-    return (
-      <div>
-        <form ref='form' onSubmit={this.onSubmit} className='countdow-form'>
-          <input type="text" ref='seconds' placeholder='Enter time in seconds'/>
-          <button className='button expanded'>Start</button>
-        </form>
-      </div>
-    );
-  }
-});
+
+    onSubmit(e){
+        e.preventDefault();
+        const strSeconds = this.refs.seconds.value;
+
+        console.log('input count', $('input').length);
+
+        if(strSeconds.match(/^[0-9]*$/) && strSeconds){
+            this.refs.seconds.value = '';
+            this.props.onSetCountdown(parseInt(strSeconds, 10));
+        }
+    }
+
+    render(){
+        return (
+            <div>
+                <form ref='form' onSubmit={this.onSubmit} className='countdow-form'>
+                    <input type="text" ref='seconds' placeholder='Enter time in seconds'/>
+                    <button className='button expanded'>Start</button>
+                </form>
+            </div>
+        );
+    }
+}
 
 module.exports = CountdownForm;
