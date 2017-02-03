@@ -3,27 +3,36 @@ const React = require('react');
 class CountdownForm extends React.Component{
     constructor (props){
         super(props);
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onSubmit(e){
-        e.preventDefault();
-        const strSeconds = this.refs.seconds.value;
-
-        console.log('input count', $('input').length);
-
-        if(strSeconds.match(/^[0-9]*$/) && strSeconds){
-            this.refs.seconds.value = '';
-            this.props.onSetCountdown(parseInt(strSeconds, 10));
+    onStartCountdown = (newStatus) => {
+        return () => {
+            let seconds = this.refs.seconds.value;
+            if(seconds.trim()){
+                this.refs.seconds.value = '';
+                this.props.onStartCountdown(newStatus);
+            }
         }
-    }
+    };
+
+    onChange = () => {
+        let inputValue = this.refs.seconds.value;
+        console.log(inputValue);
+        let isNumber = this.props.checkNumber(inputValue);
+        if ( isNumber ) {
+            this.props.onInputNumber(inputValue.trim());
+        } else {
+            this.refs.seconds.value = inputValue.slice(0, inputValue.length - 1);
+            alert('Inter Number');
+        }
+    };
 
     render(){
         return (
             <div>
-                <form ref='form' onSubmit={this.onSubmit} className='countdow-form'>
-                    <input type="text" ref='seconds' placeholder='Enter time in seconds'/>
-                    <button className='button expanded'>Start</button>
+                <form className='countdow-form'>
+                    <input type="text" ref="seconds" onChange={this.onChange} placeholder='Enter time in seconds' />
+                    <button onClick={this.onStartCountdown('started')} className='button expanded'>Start</button>
                 </form>
             </div>
         );

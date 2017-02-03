@@ -11,9 +11,6 @@ class Countdown extends React.Component{
             count: 0,
             countdownStatus: 'stopped'
         };
-
-        this.handleSetCountdown = this.handleSetCountdown.bind(this);
-        this.handleStatusChange = this.handleStatusChange.bind(this);
     }
 
     componentDidUpdate (prevProps, prevState) {
@@ -50,18 +47,27 @@ class Countdown extends React.Component{
         }, 1000);
     }
 
-    handleStatusChange (newStatus) {
+    isNumeric(number) {
+        return !isNaN(parseFloat(number)) && isFinite(number);
+    }
+
+    handleStatusChange = (newStatus) => {
         this.setState({
             countdownStatus: newStatus
         });
-    }
+    };
 
-    handleSetCountdown (seconds) {
+    handleStartCountdown = (newStatus) => {
         this.setState({
-            count: seconds,
-            countdownStatus: 'started'
+            countdownStatus: newStatus
         });
-    }
+    };
+
+    handleInputNumber = (seconds) => {
+        this.setState({
+            count: seconds
+        });
+    };
 
     render (){
         const {count, countdownStatus} = this.state;
@@ -69,7 +75,7 @@ class Countdown extends React.Component{
             if(countdownStatus !== 'stopped'){ //started, paused
                 return <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange}/>
             } else { //stopped
-                return <CountdownForm onSetCountdown={this.handleSetCountdown}/>
+                return <CountdownForm checkNumber={this.isNumeric} onInputNumber={this.handleInputNumber} onStartCountdown={this.handleStartCountdown}/>
             }
         };
         return (

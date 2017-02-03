@@ -11,8 +11,6 @@ class Timer extends React.Component{
             count: 0,
             timerStatus: 'stopped'
         };
-
-        this.handleStatusChange = this.handleStatusChange.bind(this)
     }
 
     componentWillUnmount(){
@@ -43,10 +41,10 @@ class Timer extends React.Component{
         }, 1000);
     }
 
-    handleStatusChange(newTimerStatus){
+    handleStatusChange = (newTimerStatus) => {
         console.log(newTimerStatus);
         this.setState({timerStatus: newTimerStatus});
-    }
+    };
 
     render(){
         const {count, timerStatus} = this.state;
